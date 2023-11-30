@@ -1,4 +1,4 @@
-package com.example.coursservice.DTO;
+package com.example.inscriptionservice.DTO;
 
 import lombok.Value;
 
@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 @Value
 public class CourDto implements Serializable {
-    int id ;
+    int id;
     String name;
     int duration;
 }

@@ -1,7 +1,10 @@
 package com.example.coursservice.Service;
 
+import com.example.coursservice.DTO.CourCreationDto;
+import com.example.coursservice.DTO.CourDto;
 import com.example.coursservice.Entity.Cour;
 import com.example.coursservice.Repository.CourRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +16,16 @@ public class CourService {
     private CourRepository courRepository;
 
 
-    public List<Cour> getCours(){
-        return courRepository.findAll();
+    @Autowired
+    private ModelMapper modelMapper;
+
+
+    public List<CourDto> getCours(){
+        return courRepository.findAll().stream().map(cour -> modelMapper.map(cour, CourDto.class)).toList();
     }
 
-    public Cour AddCour(Cour cour){
-        courRepository.save(cour);
-        return cour;
+    public CourCreationDto AddCour(Cour cour){
+        return modelMapper.map(courRepository.save(cour),CourCreationDto.class);
     }
 
     public void DeleteCour(Integer id){
@@ -27,8 +33,8 @@ public class CourService {
 
     }
 
-    public Cour getCour(Integer id){
-        return courRepository.findById(id).get();
+    public CourDto getCour(Integer id){
+        return modelMapper.map(courRepository.findById(id).get(),CourDto.class);
     }
 
     public boolean getCourExist(Integer id){

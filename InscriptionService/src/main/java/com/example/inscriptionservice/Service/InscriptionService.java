@@ -15,7 +15,8 @@ public class InscriptionService {
     @Autowired
     private InscriptionRepository inscriptionRepository;
 
-    RestTemplate restTemplate = new RestTemplate();
+    @Autowired
+    private RestTemplate restTemplate ;
 
     String coursUrl = "http://localhost:8080/getcourexistance";
 

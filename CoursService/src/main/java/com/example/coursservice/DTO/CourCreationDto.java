@@ -8,8 +8,7 @@ import java.io.Serializable;
  * DTO for {@link com.example.coursservice.Entity.Cour}
  */
 @Value
-public class CourDto implements Serializable {
-    int id ;
+public class CourCreationDto implements Serializable {
     String name;
     int duration;
 }
