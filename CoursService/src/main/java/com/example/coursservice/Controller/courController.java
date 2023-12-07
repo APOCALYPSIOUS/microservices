@@ -1,6 +1,5 @@
 package com.example.coursservice.Controller;
 
-import com.example.coursservice.DTO.CourCreationDto;
 import com.example.coursservice.DTO.CourDto;
 import com.example.coursservice.Entity.Cour;
 import com.example.coursservice.Service.CourService;
@@ -20,7 +19,7 @@ public class courController {
     }
 
     @PostMapping("/addcour")
-    public CourCreationDto AddCour(@RequestBody Cour cour){
+    public CourDto AddCour(@RequestBody CourDto cour){
         return courService.AddCour(cour);
     }
 

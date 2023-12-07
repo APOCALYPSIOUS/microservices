@@ -1,6 +1,5 @@
 package com.example.coursservice.Service;
 
-import com.example.coursservice.DTO.CourCreationDto;
 import com.example.coursservice.DTO.CourDto;
 import com.example.coursservice.Entity.Cour;
 import com.example.coursservice.Repository.CourRepository;
@@ -24,8 +23,8 @@ public class CourService {
         return courRepository.findAll().stream().map(cour -> modelMapper.map(cour, CourDto.class)).toList();
     }
 
-    public CourCreationDto AddCour(Cour cour){
-        return modelMapper.map(courRepository.save(cour),CourCreationDto.class);
+    public CourDto AddCour(CourDto cour){
+        return modelMapper.map(courRepository.save(modelMapper.map(cour,Cour.class)),CourDto.class);
     }
 
     public void DeleteCour(Integer id){

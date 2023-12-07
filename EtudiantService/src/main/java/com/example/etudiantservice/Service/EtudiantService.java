@@ -1,7 +1,10 @@
 package com.example.etudiantservice.Service;
 
+import com.example.etudiantservice.DTO.EtudiantCreationDto;
+import com.example.etudiantservice.DTO.EtudiantDto;
 import com.example.etudiantservice.Entity.Etudiant;
 import com.example.etudiantservice.Repository.EtudiantRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +16,15 @@ public class EtudiantService {
     @Autowired
     private EtudiantRepository etudiantRepository;
 
-    public List<Etudiant> getEtudiants(){
-        return etudiantRepository.findAll();
+    @Autowired
+    private ModelMapper modelMapper;
+
+    public List<EtudiantDto> getEtudiants(){
+        return etudiantRepository.findAll().stream().map(etud -> new EtudiantDto(etud.getId(),etud.getNom(),etud.getPrenom(),etud.getNumber())).toList();
     }
 
-    public Etudiant AddEtud(Etudiant etud){
-        return etudiantRepository.save(etud);
+    public EtudiantDto AddEtud(EtudiantCreationDto etud){
+        return modelMapper.map(etudiantRepository.save(modelMapper.map(etud,Etudiant.class)), EtudiantDto.class);
     }
 
     public void DeleteEtud(Integer id){
@@ -26,8 +32,8 @@ public class EtudiantService {
     }
 
 
-    public Etudiant getEtud(Integer id){
-        return etudiantRepository.findById(id).get();
+    public EtudiantDto getEtud(Integer id){
+        return modelMapper.map(etudiantRepository.findById(id).get(),EtudiantDto.class);//etudiantRepository.findById(id).get();
     }
 
     public boolean getEtudExist(Integer id){

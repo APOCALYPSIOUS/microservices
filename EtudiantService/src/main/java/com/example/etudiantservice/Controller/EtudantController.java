@@ -1,7 +1,7 @@
 package com.example.etudiantservice.Controller;
 
-import com.example.etudiantservice.Entity.Etudiant;
-import com.example.etudiantservice.Repository.EtudiantRepository;
+import com.example.etudiantservice.DTO.EtudiantCreationDto;
+import com.example.etudiantservice.DTO.EtudiantDto;
 import com.example.etudiantservice.Service.EtudiantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +15,12 @@ public class EtudantController {
     private EtudiantService etudiantService;
 
     @GetMapping("/getetud")
-    public List<Etudiant> getEtudiants(){
+    public List<EtudiantDto> getEtudiants(){
        return  etudiantService.getEtudiants();
     }
 
     @PostMapping("/addetud")
-    public Etudiant AddEtud(@RequestBody Etudiant etud){
+    public EtudiantDto AddEtud(@RequestBody EtudiantCreationDto etud){
         return etudiantService.AddEtud(etud);
 
     }
@@ -31,7 +31,7 @@ public class EtudantController {
     }
 
     @GetMapping("/getetud/{id}")
-    public Etudiant getEtud(@PathVariable Integer id){
+    public EtudiantDto getEtud(@PathVariable Integer id){
         return etudiantService.getEtud(id);
     }
 

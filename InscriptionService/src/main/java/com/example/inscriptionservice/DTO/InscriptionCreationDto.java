@@ -8,12 +8,12 @@ import java.io.Serializable;
  * DTO for {@link com.example.inscriptionservice.Entity.Inscription}
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-public class InscriptionDto implements Serializable {
-    Integer id;
+@AllArgsConstructor
+@NoArgsConstructor
+public class InscriptionCreationDto implements Serializable {
     Integer etudiant;
     Integer cour;
+
 }

@@ -1,15 +1,13 @@
 package com.example.inscriptionservice.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.proxy.HibernateProxy;
+
+import java.util.Objects;
 
 @Getter
+@ToString
 @Setter
 @Entity
 @Table(name = "inscription")
@@ -18,11 +16,12 @@ import lombok.Setter;
 public class Inscription {
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Integer  idEtudiant;
+    private Integer  etudiant;
 
 
-    private Integer idCour;
+    private Integer cour;
 
 }

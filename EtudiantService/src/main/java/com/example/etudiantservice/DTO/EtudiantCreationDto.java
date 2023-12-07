@@ -11,11 +11,12 @@ import java.io.Serializable;
  * DTO for {@link com.example.etudiantservice.Entity.Etudiant}
  */
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class EtudiantDto implements Serializable {
-    Integer id;
+@AllArgsConstructor
+
+public class EtudiantCreationDto implements Serializable {
     String nom;
     String prenom;
     String number;
+
 }
