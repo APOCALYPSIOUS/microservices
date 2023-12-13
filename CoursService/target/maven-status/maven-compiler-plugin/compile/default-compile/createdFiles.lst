@@ -1,0 +1,7 @@
+com\example\coursservice\Service\CourService.class
+com\example\coursservice\DTO\CourDto.class
+com\example\coursservice\DTO\CourCreationDto.class
+com\example\coursservice\Entity\Cour.class
+com\example\coursservice\Repository\CourRepository.class
+com\example\coursservice\Controller\courController.class
+com\example\coursservice\CoursServiceApplication.class

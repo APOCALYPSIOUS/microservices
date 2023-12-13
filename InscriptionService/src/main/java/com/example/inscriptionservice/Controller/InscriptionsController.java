@@ -1,9 +1,6 @@
 package com.example.inscriptionservice.Controller;
 
-import com.example.inscriptionservice.DTO.CourDto;
-import com.example.inscriptionservice.DTO.EtudiantDto;
-import com.example.inscriptionservice.DTO.InscriptionCreationDto;
-import com.example.inscriptionservice.DTO.InscriptionDto;
+import com.example.inscriptionservice.DTO.*;
 import com.example.inscriptionservice.Service.InscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +12,7 @@ public class InscriptionsController {
     @Autowired
     private InscriptionService inscriptionService;
     @GetMapping("/getins")
-    public List<InscriptionDto> getInscriptions(){
+    public List<InscriptionViewDto> getInscriptions(){
         return inscriptionService.getInscriptions();
     }
 

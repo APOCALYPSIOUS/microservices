@@ -1,20 +1,14 @@
 package com.example.inscriptionservice.Service;
 
-import com.example.inscriptionservice.DTO.CourDto;
-import com.example.inscriptionservice.DTO.EtudiantDto;
-import com.example.inscriptionservice.DTO.InscriptionCreationDto;
-import com.example.inscriptionservice.DTO.InscriptionDto;
+import com.example.inscriptionservice.DTO.*;
 import com.example.inscriptionservice.Entity.Inscription;
 import com.example.inscriptionservice.Repository.InscriptionRepository;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.net.CacheRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,8 +37,22 @@ public class InscriptionService {
 
     String etudUrl = "http://localhost:8081/getetudexistance/";
 
-    public List<InscriptionDto> getInscriptions(){
-        return inscriptionRepository.findAll().stream().map(inscription -> modelMapper.map(inscription,InscriptionDto.class)).toList();
+    public List<InscriptionViewDto> getInscriptions(){
+        List<InscriptionViewDto> inscriptionDto1s = new ArrayList<>();
+        List<InscriptionDto> inscriptions = inscriptionRepository.findAll().stream().map(inscription -> modelMapper.map(inscription,InscriptionDto.class)).toList();
+        for(InscriptionDto inscription : inscriptions) {
+            Integer idCour = inscription.getCour();
+            Integer idEtudiant = inscription.getEtudiant();
+            InscriptionViewDto inscriptionViewDto = new InscriptionViewDto();
+            inscriptionViewDto.setId(inscription.getId());
+            EtudiantDto etudiantDto = etudiantClient.getEtudById(idEtudiant);
+            CourDto courDto = courClient.getCourById(idCour);
+            inscriptionViewDto.setEtudiant(etudiantDto);
+            inscriptionViewDto.setCour(courDto);
+            inscriptionDto1s.add(inscriptionViewDto);
+        }
+        return inscriptionDto1s;
+
     }
 
     public InscriptionDto AddInscription(InscriptionCreationDto inscription) {
@@ -97,7 +105,7 @@ public class InscriptionService {
         for (Integer i : etudiantId) {
 //
 //          EtudiantDto etudiant = webClient.get().uri("http://localhost:8081/getetud/" + i).retrieve().bodyToMono(EtudiantDto.class).block();
-            EtudiantDto etudiant= etudiantClient.getEtudByCourId(i); 
+            EtudiantDto etudiant= etudiantClient.getEtudById(i);
             etudiants.add(etudiant);
         }
         return etudiants;
