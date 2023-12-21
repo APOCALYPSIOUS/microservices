@@ -13,27 +13,27 @@ public class courController {
     @Autowired
     private CourService courService;
 
-    @GetMapping("/getcour")
+    @GetMapping("cour/getcour")
     public List<CourDto> getCours(){
         return courService.getCours();
     }
 
-    @PostMapping("/addcour")
+    @PostMapping("cour/addcour")
     public CourDto AddCour(@RequestBody CourDto cour){
         return courService.AddCour(cour);
     }
 
-    @DeleteMapping("/deletecour/{id}")
+    @DeleteMapping("cour/deletecour/{id}")
     public void DeleteCour(@PathVariable Integer id){
         courService.DeleteCour(id);
     }
 
-    @GetMapping("/getcour/{id}")
+    @GetMapping("cour/getcour/{id}")
     public CourDto getCour(@PathVariable Integer id){
         return courService.getCour(id);
     }
 
-    @GetMapping("/getcourexistance/{id}")
+    @GetMapping("cour/getcourexistance/{id}")
     public boolean getCourExist(@PathVariable Integer id){
         return courService.getCourExist(id);
     }

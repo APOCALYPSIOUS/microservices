@@ -11,12 +11,12 @@ import java.util.List;
 public class InscriptionsController {
     @Autowired
     private InscriptionService inscriptionService;
-    @GetMapping("/getins")
+    @GetMapping("inscription/getins")
     public List<InscriptionViewDto> getInscriptions(){
         return inscriptionService.getInscriptions();
     }
 
-    @GetMapping("/getetudiantbyCourid/{id}")
+    @GetMapping("inscription/getetudiantbyCourid/{id}")
     public List<EtudiantDto> getEtudiantById(@PathVariable Integer id){
         return inscriptionService.getEtudiantByCourId(id);
     }
@@ -26,14 +26,14 @@ public class InscriptionsController {
         return inscriptionService.getCoursByEtudiantId(id);
     }
 
-    @PostMapping("/addins")
+    @PostMapping("inscription/addins")
     public InscriptionDto AddInscription(@RequestBody InscriptionCreationDto inscription){
         return inscriptionService.AddInscription(inscription);
     }
 
 
 
-    @DeleteMapping("/deleteins/{id}")
+    @DeleteMapping("inscription/deleteins/{id}")
     public void DeleteInscription(@PathVariable Integer id){
         inscriptionService.DeleteInscription(id);
     }

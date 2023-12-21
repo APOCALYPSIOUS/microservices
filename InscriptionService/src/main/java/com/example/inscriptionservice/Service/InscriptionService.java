@@ -33,9 +33,9 @@ public class InscriptionService {
     @Autowired
     private EtudiantClient etudiantClient;
 
-    String coursUrl = "http://localhost:8080/getcourexistance/";
+    String coursUrl = "http://localhost:8080/cour/getcourexistance/";
 
-    String etudUrl = "http://localhost:8081/getetudexistance/";
+    String etudUrl = "http://localhost:8081/etudiant/getetudexistance/";
 
     public List<InscriptionViewDto> getInscriptions(){
         List<InscriptionViewDto> inscriptionDto1s = new ArrayList<>();
