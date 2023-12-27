@@ -4,11 +4,13 @@ import com.example.etudiantservice.DTO.EtudiantCreationDto;
 import com.example.etudiantservice.DTO.EtudiantDto;
 import com.example.etudiantservice.Service.EtudiantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RefreshScope
 public class EtudantController {
 
     @Autowired

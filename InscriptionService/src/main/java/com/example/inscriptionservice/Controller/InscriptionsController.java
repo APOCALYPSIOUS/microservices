@@ -3,11 +3,13 @@ package com.example.inscriptionservice.Controller;
 import com.example.inscriptionservice.DTO.*;
 import com.example.inscriptionservice.Service.InscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RefreshScope
 public class InscriptionsController {
     @Autowired
     private InscriptionService inscriptionService;

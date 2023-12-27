@@ -4,12 +4,18 @@ import com.example.coursservice.DTO.CourDto;
 import com.example.coursservice.Entity.Cour;
 import com.example.coursservice.Service.CourService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RefreshScope
 public class courController {
+
+    @Value("${ayoub}")
+    private String ayoub;
     @Autowired
     private CourService courService;
 
@@ -36,5 +42,10 @@ public class courController {
     @GetMapping("cour/getcourexistance/{id}")
     public boolean getCourExist(@PathVariable Integer id){
         return courService.getCourExist(id);
+    }
+
+    @GetMapping("cour/ayoub")
+    public String getAyoub(){
+        return ayoub;
     }
 }
