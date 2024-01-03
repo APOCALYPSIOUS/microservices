@@ -23,7 +23,7 @@ public class InscriptionsController {
         return inscriptionService.getEtudiantByCourId(id);
     }
 
-    @GetMapping("/getCoursbyEtudid/{id}")
+    @GetMapping("inscription/getCoursbyEtudid/{id}")
     public List<CourDto> getCoursByEtudId(@PathVariable Integer id){
         return inscriptionService.getCoursByEtudiantId(id);
     }

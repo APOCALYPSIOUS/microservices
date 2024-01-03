@@ -21,3 +21,21 @@ services:
     ports:
       - "9092:9092"
       - "29092:29092"
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: "example"
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+    volumes:
+      - my-datavolume:/var/lib/mysql
+volumes:
+  my-datavolume:
